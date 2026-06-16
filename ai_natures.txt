@@ -1,0 +1,26 @@
+[НаКо]
+generation_rules=
+stat_modifiers=
+skills=Общие знания (НаКо); Общие знания (Конклав); Ремесло (Исследователь)
+talents=
+traits=
+equipment=
+description=Исследовательские и научные Искины, ориентированные на сбор, анализ и сохранение знаний.
+
+[НеоКон]
+generation_rules=set_all_characteristics=20; max_skill_bonus=20
+stat_modifiers=
+skills=
+talents=
+traits=Начальные характеристики равны 20; Нельзя улучшить навыки выше +20
+equipment=
+description=Консервативная ветвь Искинов с жёсткими ограничителями развития.
+
+[Ксено]
+generation_rules=
+stat_modifiers=
+skills=
+talents=
+traits=Все тесты взаимодействия с человеческими технологиями получают постоянный штраф -40
+equipment=
+description=Искины, построенные на чуждых или нестандартных технологических архитектурах.
