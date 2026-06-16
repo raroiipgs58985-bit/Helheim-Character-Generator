@@ -1,0 +1,70 @@
+[characteristic_bonus]
+description=Бонус характеристики рассчитывается от итогового значения характеристики.
+formula=bonus = characteristic_value // 10
+examples=НС 45 -> БНС 4; ЛВ 40 -> БЛВ 4; ВН 35 -> БВН 3
+
+[movement]
+description=Движение рассчитывается от бонуса ловкости и размера персонажа.
+base_formula=base_movement = БЛВ + Размер
+half_move=base_movement
+full_move=base_movement * 2
+run=base_movement * 3
+sprint=base_movement * 6
+format=half_move/full_move/run/sprint
+example=ЛВ 40, Размер 0 -> 4/8/12/24
+
+[armor_points]
+description=ОБ не рассчитывается генератором. Игрок вписывает очки брони вручную.
+manual_input=true
+default=0/0/0/0
+
+[endurance_bonus]
+description=БВ является бонусом выносливости.
+formula=БВ = БВН
+example=ВН 35 -> БВН 3 -> БВ 3
+
+[wounds]
+description=Раны рассчитываются от бонуса ран и бонусов характеристик ВН и СВ.
+wound_bonus_sources=templates.txt; homeworlds.txt; specialties_*.txt
+formula=Раны = (бонус ран от расы + бонус ран от родного мира + бонус ран от специальности) + (БВН + БСВ) * 2
+example=Бонус ран 8, ВН 35, СВ 40 -> 8 + (3 + 4) * 2 = 22
+
+[skill_merge]
+description=Правило объединения повторяющихся навыков.
+first_skill_without_bonus=Навык получает значение +0
+duplicate_skill_without_bonus=Повторный навык без указанного бонуса даёт +5
+skill_with_bonus=Навык с указанным бонусом прибавляет этот бонус
+examples=Первая помощь + Первая помощь -> Первая помощь +5; Первая помощь + Первая помощь +10 -> Первая помощь +15; ТехЮз +10 + ТехЮз +10 -> ТехЮз +20
+
+[talent_merge]
+description=Правило объединения повторяющихся талантов.
+duplicate_rule=Повторные таланты убираются из итоговой карточки
+compensation=За каждый удалённый повторный талант персонаж получает +25 опыта
+repeatable_exception=Если талант имеет repeatable=true, он может повторяться и компенсация не выдаётся
+example=Пресыщенный + Пресыщенный -> Пресыщенный; компенсация +25 опыта
+
+[experience]
+description=Правило подсчёта итогового опыта.
+formula=Итоговый опыт = стартовый опыт + компенсация за повторные таланты - стоимость специальности - покупки навыков - покупки талантов
+specialty_cost_source=specialties_*.txt
+duplicate_talent_compensation=25
+
+[stat_generation_organic]
+description=Плановое распределение характеристик для органических персонажей.
+points=100
+max_add_per_stat=20
+random_roll=2d10
+redistribution_count=2
+redistribution_value=5
+
+[stat_generation_synthetic]
+description=Плановое распределение характеристик для Искинов.
+points=50
+max_add_per_stat=20
+random_roll=2d10
+redistribution_count=2
+redistribution_value=5
+
+[final_card]
+description=Структура итоговой карточки персонажа.
+fields=Имя; Раса; Родной мир или природа Искина; Специальность; Характеристики; Движение; ОБ; БВ; Раны; Опыт; Навыки; Таланты; Особенности; Импланты; Снаряжение; Примечание
